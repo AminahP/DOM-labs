@@ -54,15 +54,79 @@ subMenuEl.classList.add('flex-around')
 
 subMenuEl.style.position = 'absolute'
 
-subMenuEl.style.top = '0%'
+subMenuEl.style.top = '0'
+
+  //5.1
 
 //Select and cache the all of the <a>elements inside of topMenuElin a variable named topMenuLinks.
 const topMenuLinks = document.querySelectorAll('#top-menu a');
 //Declare a global showingSubMenu variable and initialize it to false;
  let showingSubMenu = false;
-
-
-
-
  
+  //5.2
+ topMenuEl.addEventListener('click', function(ev){
+  ev.preventDefault();
+  let link = ev.target;
+if (link.tag !== 'A') return;
+console.log(link.textContent)
+ })
+ 
+  //5.3
+if (link.classList.contains('active')){
+  link.classList.remove('active');
+  showingSubMenu = false;
+  subMenuEl.style.top = '0';
+  return;
+}
+  //5.4
+topMenuLinks.forEach(function(link){
+  link.classList.remove('active');
+});
 
+//5.5
+
+link.classList.add('active')
+
+//5.6
+ let linkData = menuLinks.find(function(linkObj){
+  return linkObj.text ===link.textContent;
+ });
+
+ showingSubMenu = 'subLinks' in linkData;
+  
+ if (showingSubMenu) {
+   buildSubMenu(linkData.subLinks);
+   subMenuEl.style.top = '100%';
+ } else {
+   subMenuEl.style.top = '0';
+ };
+
+ function buildSubMenu(subLinks) {
+   subMenuEl.innerHTML = '';
+   subLinks.forEach(function(link) {
+     let linkEl = document.createElement('a');
+     linkEl.setAttribute('href', link.href);
+     linkEl.textContent = link.text;
+     subMenuEl.appendChild(linkEl);
+   });
+ }
+
+ subMenuEl.addEventListener('click', function(event) {
+   event.preventDefault();
+   let link = event.target;
+   if (link.tagName !== 'A') return;
+   console.log(link.textContent);
+   
+   showingSubMenu = false;
+   subMenuEl.style.top = '0';
+   
+   topMenuLinks.forEach(function(link) {
+     link.classList.remove('active');
+   });
+   
+   mainEl.innerHTML = `<h1>${link.textContent}</h1>`;
+
+});
+
+// the webpage eneded up blank . i also commented everything out and it was still blnk
+// or the website is dead
