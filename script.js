@@ -1,9 +1,20 @@
 // Menu data structure
 let menuLinks = [
-    {text: 'about', href: '/about'},
-    {text: 'catalog', href: '/catalog'},
-    {text: 'orders', href: '/orders'},
-    {text: 'account', href: '/account'},
+  {text: 'about', href: '/about'},
+  {text: 'catalog', href: '#', subLinks: [
+    {text: 'all', href: '/catalog/all'},
+    {text: 'top selling', href: '/catalog/top'},
+    {text: 'search', href: '/catalog/search'},
+  ]},
+  {text: 'orders', href: '#' , subLinks: [
+    {text: 'new', href: '/orders/new'},
+    {text: 'pending', href: '/orders/pending'},
+    {text: 'history', href: '/orders/history'},
+  ]},
+  {text: 'account', href: '#', subLinks: [
+    {text: 'profile', href: '/account/profile'},
+    {text: 'sign out', href: '/account/signout'},
+  ]},
   ];
 
 
@@ -39,6 +50,19 @@ subMenuEl.style.backgroundColor = 'var(--sub-menu-bg)';
 
 subMenuEl.classList.add('flex-around')
 
-subMenuEl.style.position('absolute')
+//Set the CSS positionproperty of subMenuElto the value of absolute.
 
-subMenuEl
+subMenuEl.style.position = 'absolute'
+
+subMenuEl.style.top = '0%'
+
+//Select and cache the all of the <a>elements inside of topMenuElin a variable named topMenuLinks.
+const topMenuLinks = document.querySelectorAll('#top-menu a');
+//Declare a global showingSubMenu variable and initialize it to false;
+ let showingSubMenu = false;
+
+
+
+
+ 
+
