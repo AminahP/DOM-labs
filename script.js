@@ -67,17 +67,17 @@ const topMenuLinks = document.querySelectorAll('#top-menu a');
  topMenuEl.addEventListener('click', function(ev){
   ev.preventDefault();
   let link = ev.target;
-if (link.tag !== 'A') return;
+if (link.tag !== 'a') return;
 console.log(link.textContent)
  })
  
   //5.3
-if (link.classList.contains('active')){
-  link.classList.remove('active');
-  showingSubMenu = false;
-  subMenuEl.style.top = '0';
-  return;
-}
+// if (link.classList.contains('active')){
+//   link.classList.remove('active');
+//   showingSubMenu = false;
+//   subMenuEl.style.top = '0';
+//   return;
+// }
   //5.4
 topMenuLinks.forEach(function(link){
   link.classList.remove('active');
@@ -89,7 +89,7 @@ link.classList.add('active')
 
 //5.6
  let linkData = menuLinks.find(function(linkObj){
-  return linkObj.text ===link.textContent;
+  return linkObj.text ==link.textContent;
  });
 
  showingSubMenu = 'subLinks' in linkData;
@@ -114,7 +114,7 @@ link.classList.add('active')
  subMenuEl.addEventListener('click', function(event) {
    event.preventDefault();
    let link = event.target;
-   if (link.tagName !== 'A') return;
+   if (link.tagName !== 'a') return;
    console.log(link.textContent);
    
    showingSubMenu = false;
